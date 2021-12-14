@@ -1,18 +1,19 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdk 31
+    compileSdkVersion(BuildConfigVersions.compileSdk)
 
     defaultConfig {
         applicationId "com.app.bitcointicker"
-        minSdk 23
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion(BuildConfigVersions.minSdk)
+        targetSdkVersion(BuildConfigVersions.targetSdk)
+        versionCode = BuildConfigVersions.versionCode
+        versionName = BuildConfigVersions.versionName
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -36,12 +37,41 @@ android {
 }
 
 dependencies {
+    implementation(Libs.kotlin)
+    implementation(Libs.coreKtx)
+    implementation(Libs.appcompat)
+    implementation(Libs.material)
+    implementation(Libs.constraintLayout)
+    testImplementation(Libs.junit)
+    androidTestImplementation(Libs.junitExt)
+    androidTestImplementation(Libs.espresso)
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //Navigation
+    implementation(Libs.navigationFragment)
+    implementation(Libs.navigationUi)
+    implementation(Libs.navigationFragmentKtx)
+    implementation(Libs.navigationUiKtx)
+
+    //Retrofit
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitConverter)
+    implementation(Libs.interceptor)
+
+    //Recyclerview
+    implementation(Libs.recyclerview)
+
+    //coroutines
+    implementation(Libs.coroutinesCore)
+    implementation(Libs.coroutines)
+
+    //Lifecycle
+    implementation(Libs.lifecycleExtensionArch)
+    implementation(Libs.lifecycleExtension)
+    implementation(Libs.lifecycleViewmodelKtx)
+    implementation(Libs.lifecycleLivedata)
+
+    //hilt
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
+    implementation(Libs.activityKtx)
 }
