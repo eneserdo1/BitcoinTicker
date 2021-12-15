@@ -1,14 +1,15 @@
  package com.app.bitcointicker.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.app.bitcointicker.R
+import com.app.bitcointicker.common.BaseActivity
+import com.app.bitcointicker.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
  @AndroidEntryPoint
- class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+
+     }
 }

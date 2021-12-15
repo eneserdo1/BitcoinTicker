@@ -10,7 +10,7 @@ object BuildConfigVersions {
 
 object Versions{
     const val coroutines = "1.3.9"
-    const val kotlinVersion = "1.4.21"
+    const val kotlinVersion = "1.5.21"
     const val appcompat = "1.3.1"
     const val coreKtx = "1.6.0"
     const val material = "1.4.0"

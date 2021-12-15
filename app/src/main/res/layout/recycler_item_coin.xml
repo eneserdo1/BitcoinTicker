@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="3dp"
+    android:gravity="center_vertical"
+    android:paddingVertical="10dp"
+    android:background="@drawable/item_background"
+    >
+
+    <TextView
+        android:id="@+id/coin_symbol_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        tools:text = "Bitcoin"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="10dp"
+        android:fontFamily="@font/sf_pro_text_semibold"
+        />
+
+    <TextView
+        android:id="@+id/coin_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        tools:text = "Bitcoin"
+        android:layout_marginHorizontal="10dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/textGrey"
+        android:fontFamily="@font/sf_pro_text_medium"
+        />
+
+
+</LinearLayout>
