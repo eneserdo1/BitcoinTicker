@@ -21,7 +21,11 @@
         android:id="@+id/coinDetailFragment"
         android:name="com.app.bitcointicker.ui.coinDetail.CoinDetailFragment"
         android:label="fragment_coin_detail"
-        tools:layout="@layout/fragment_coin_detail" />
+        tools:layout="@layout/fragment_coin_detail" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/favouritesCoinFragment"
         android:name="com.app.bitcointicker.ui.coinFav.FavouritesCoinFragment"

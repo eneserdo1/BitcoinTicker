@@ -12,6 +12,6 @@ interface ApiService {
     suspend fun getCurrency(@QueryMap queryMap: Map<String,String>) : Response<List<CoinList>>
 
     @Headers("Accept: application/json")
-    @GET("coins/markets")
-    suspend fun getCurrencyDetail(@QueryMap queryMap: Map<String,String>) :Response<List<CoinDetail>>
+    @GET("coins/{id}")
+    suspend fun getCurrencyDetail(@Path("id") id:String) :Response<CoinDetail>
 }

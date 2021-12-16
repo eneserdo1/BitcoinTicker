@@ -13,7 +13,6 @@ abstract class DataSource {
             } else {
                 Resource.error(defaultErrorMessage, null)
             }
-
         } catch (e: Exception) {
             e.printStackTrace()
             return Resource.error("Error ${e.message}", null)

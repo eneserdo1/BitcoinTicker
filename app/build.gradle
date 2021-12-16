@@ -75,4 +75,7 @@ dependencies {
     implementation(Libs.hilt)
     kapt(Libs.hiltCompiler)
     implementation(Libs.activityKtx)
+
+    //Coil
+    implementation(Libs.coil)
 }

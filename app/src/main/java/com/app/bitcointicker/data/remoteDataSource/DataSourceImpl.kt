@@ -13,8 +13,8 @@ class DataSourceImpl @Inject constructor(private val apiService : ApiService): D
         return getResponse(request = {apiService.getCurrency(queryMap)},"Error fetch currency")
     }
 
-    suspend fun getCurrencyDetail(queryMap:Map<String,String>):Resource<List<CoinDetail>>{
-       return getResponse(request = {apiService.getCurrencyDetail(queryMap)},"Error fetch currency detail")
+    suspend fun getCurrencyDetail(id:String):Resource<CoinDetail>{
+       return getResponse(request = {apiService.getCurrencyDetail(id)},"Error fetch currency detail")
     }
 
 }

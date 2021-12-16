@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.bitcointicker.R
 import com.app.bitcointicker.common.BaseFragment
@@ -62,7 +63,9 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding>(FragmentCoinListB
     private fun initRecyclerview() {
         coinAdapter = CoinRecyclerviewAdapter(object : ItemClickListener{
             override fun selectedItem(data: CoinList) {
-
+                val bundle = Bundle()
+                bundle.putString("id",data.id)
+                Navigation.findNavController(requireView()).navigate(R.id.action_coinListFragment_to_coinDetailFragment,bundle)
             }
         })
         binding.coinRecyclerview.apply {

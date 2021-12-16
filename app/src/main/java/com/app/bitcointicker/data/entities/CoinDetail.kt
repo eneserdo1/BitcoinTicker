@@ -3,31 +3,48 @@ import com.google.gson.annotations.SerializedName
 
 data class CoinDetail (
 
-	@field:SerializedName("id") val id : String?=null,
-	@field:SerializedName("symbol") val symbol : String?=null,
-	@field:SerializedName("name") val name : String?=null,
-	@field:SerializedName("image") val image : String?=null,
-	@field:SerializedName("current_price") val current_price : String?=null,
-	@field:SerializedName("market_cap") val market_cap : String?=null,
-	@field:SerializedName("market_cap_rank") val market_cap_rank : Int?=null,
-	@field:SerializedName("fully_diluted_valuation") val fully_diluted_valuation : String?=null,
-	@field:SerializedName("total_volume") val total_volume : String?=null,
-	@field:SerializedName("high_24h") val high_24h : String?=null,
-	@field:SerializedName("low_24h") val low_24h : String?=null,
-	@field:SerializedName("price_change_24h") val price_change_24h : String?=null,
-	@field:SerializedName("price_change_percentage_24h") val price_change_percentage_24h : String?=null,
-	@field:SerializedName("market_cap_change_24h") val market_cap_change_24h : String?=null,
-	@field:SerializedName("market_cap_change_percentage_24h") val market_cap_change_percentage_24h : Double?=null,
-	@field:SerializedName("circulating_supply") val circulating_supply : String?=null,
-	@field:SerializedName("total_supply") val total_supply : String?=null,
-	@field:SerializedName("max_supply") val max_supply : String?=null,
-	@field:SerializedName("ath") val ath : Double?=null,
-	@field:SerializedName("ath_change_percentage") val ath_change_percentage : String?=null,
-	@field:SerializedName("ath_date") val ath_date : String?=null,
-	@field:SerializedName("atl") val atl : Double?=null,
-	@field:SerializedName("atl_change_percentage") val atl_change_percentage : String?=null,
-	@field:SerializedName("atl_date") val atl_date : String?=null,
-	@field:SerializedName("roi") val roi : Roi?=null,
-	@field:SerializedName("last_updated") val last_updated : String?=null
-)
+	@field:SerializedName("description") val description: Description?,
+	@field:SerializedName("hashing_algorithm") val hashing_algorithm: String?,
+	@field:SerializedName("id") val id: String?,
+	@field:SerializedName("image") val image: Image?,
+	@field:SerializedName("name") val name: String?,
+	@field:SerializedName("symbol") val symbol: String?,
+	@field:SerializedName("market_data") val market_data: MarketData
+){
+	data class Description(
+		@field:SerializedName("ar") val ar: String?,
+		@field:SerializedName("de") val de: String?,
+		@field:SerializedName("en") val en: String?,
+		@field:SerializedName("es") val es: String?,
+		@field:SerializedName("fr") val fr: String?,
+		@field:SerializedName("hu") val hu: String?,
+		@field:SerializedName("id") val id: String?,
+		@field:SerializedName("ja") val ja: String?,
+		@field:SerializedName("ko") val ko: String?,
+		@field:SerializedName("nl") val nl: String?,
+		@field:SerializedName("pl") val pl: String?,
+		@field:SerializedName("pt") val pt: String?,
+		@field:SerializedName("ro") val ro: String?,
+		@field:SerializedName("ru") val ru: String?,
+		@field:SerializedName("sv") val sv: String?,
+		@field:SerializedName("th") val th: String?,
+		@field:SerializedName("tr") val tr: String?,
+		@field:SerializedName("vi") val vi: String?
+	)
+
+	data class Image(
+		@field:SerializedName("large") val large: String?,
+		@field:SerializedName("small") val small: String?,
+		@field:SerializedName("thumb") val thumb: String?
+	)
+
+	data class MarketData(
+		@field:SerializedName("current_price") val current_price: CurrentPrice,
+		@field:SerializedName("price_change_percentage_24h") val price_change_percentage_24h:Double?
+	)
+
+	data class CurrentPrice(
+		@field:SerializedName("usd") val usd: Double?
+	)
+}
 

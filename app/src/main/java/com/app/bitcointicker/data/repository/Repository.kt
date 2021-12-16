@@ -6,6 +6,7 @@ import com.app.bitcointicker.data.entities.State.Resource
 import com.app.bitcointicker.data.remoteDataSource.DataSourceImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
@@ -18,13 +19,9 @@ class Repository @Inject constructor(private val remoteDataSource: DataSourceImp
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getCurrencyDetail(id:String):Flow<Resource<List<CoinDetail>?>>{
-        val queryMap = HashMap<String, String>()
-        queryMap["vs_currency"] = "usd"
-        queryMap["ids"] = id
-
+    suspend fun getCurrencyDetail(id:String):Flow<Resource<CoinDetail>>{
         return flow {
-            emit(remoteDataSource.getCurrencyDetail(queryMap))
+            emit(remoteDataSource.getCurrencyDetail(id))
         }.flowOn(Dispatchers.IO)
     }
 }

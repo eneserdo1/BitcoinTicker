@@ -28,6 +28,8 @@ object Versions{
     const val junitExt = "1.1.3"
     const val espresso = "3.4.0"
     const val gradleVersion = "7.0.2"
+    const val coilVersion = "1.4.0"
+
 }
 
 object Libs{
@@ -74,4 +76,9 @@ object Libs{
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
     const val activityKtx= "androidx.activity:activity-ktx:${Versions.hiltActivity}"
+
+    //Coil
+    const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
+
+
 }
