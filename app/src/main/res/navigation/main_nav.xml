@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/coinListFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/coinListFragment"
@@ -31,4 +31,13 @@
         android:name="com.app.bitcointicker.ui.coinFav.FavouritesCoinFragment"
         android:label="fragment_favourites_coin"
         tools:layout="@layout/fragment_favourites_coin" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.app.bitcointicker.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_coinListFragment"
+            app:destination="@id/coinListFragment" />
+    </fragment>
 </navigation>

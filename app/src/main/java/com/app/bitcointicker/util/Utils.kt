@@ -8,7 +8,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
 import android.view.animation.LinearInterpolator
-
+import com.app.bitcointicker.data.local.PreferencesHelper
 
 
 fun isValidEmail(target: CharSequence?): Boolean {
@@ -85,6 +85,9 @@ fun View.invisibleAlpha(){
     animate().alpha(0f).setDuration(300).start()
 }
 
+fun getPref(context: Context): PreferencesHelper {
+    return PreferencesHelper.getInstance(context)
+}
 
 
 

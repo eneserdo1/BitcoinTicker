@@ -29,7 +29,10 @@ object Versions{
     const val espresso = "3.4.0"
     const val gradleVersion = "7.0.2"
     const val coilVersion = "1.4.0"
-
+    const val gmsVersion = "4.3.10"
+    const val authVersion = "21.0.1"
+    const val firestoreVersion = "24.0.0"
+    const val lottieVersion = "3.1.0"
 }
 
 object Libs{
@@ -79,6 +82,14 @@ object Libs{
 
     //Coil
     const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
+
+    //Firebase
+    const val googleService = "com.google.gms:google-services:${Versions.gmsVersion}"
+    const val firebaseAuth = "com.google.firebase:firebase-auth:${Versions.authVersion}"
+    const val firebaseFirestore = "com.google.firebase:firebase-firestore:${Versions.firestoreVersion}"
+
+    //lottie
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
 
 
 }

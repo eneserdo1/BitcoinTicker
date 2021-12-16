@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion(BuildConfigVersions.compileSdk)
@@ -78,4 +79,11 @@ dependencies {
 
     //Coil
     implementation(Libs.coil)
+
+    //Firebase
+    implementation(Libs.firebaseAuth)
+    implementation(Libs.firebaseFirestore)
+
+    //Lottie
+    implementation(Libs.lottie)
 }
