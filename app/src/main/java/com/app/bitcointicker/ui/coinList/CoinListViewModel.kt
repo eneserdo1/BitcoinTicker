@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.app.bitcointicker.data.entities.CoinList
 import com.app.bitcointicker.data.entities.State.Status
 import com.app.bitcointicker.data.repository.Repository
+import com.app.bitcointicker.ui.coinList.adapter.CoinRecyclerviewAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -39,4 +40,5 @@ class CoinListViewModel @Inject constructor(private val repository: Repository):
             }
         }
     }
+
 }

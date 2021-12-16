@@ -12,10 +12,20 @@
         tools:layout="@layout/fragment_coin_list" >
         <action
             android:id="@+id/action_coinListFragment_to_coinDetailFragment"
-            app:destination="@id/coinDetailFragment" />
+            app:destination="@id/coinDetailFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
         <action
             android:id="@+id/action_coinListFragment_to_favouritesCoinFragment"
-            app:destination="@id/favouritesCoinFragment" />
+            app:destination="@id/favouritesCoinFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/coinDetailFragment"
@@ -38,6 +48,10 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_coinListFragment"
-            app:destination="@id/coinListFragment" />
+            app:destination="@id/coinListFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>

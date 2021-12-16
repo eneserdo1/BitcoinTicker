@@ -1,13 +1,16 @@
 package com.app.bitcointicker.ui.coinList.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bitcointicker.data.entities.CoinList
 import com.app.bitcointicker.databinding.RecyclerItemCoinBinding
 import com.app.bitcointicker.util.clickListener
 
-class CoinRecyclerviewAdapter(private val clickListener: ItemClickListener) : RecyclerView.Adapter<CoinRecyclerviewAdapter.MyHolder>() {
+class CoinRecyclerviewAdapter(private val clickListener: ItemClickListener) : RecyclerView.Adapter<CoinRecyclerviewAdapter.MyHolder>(),Filterable {
 
     var originalList: MutableList<CoinList> = arrayListOf()
     var filterList: MutableList<CoinList> = arrayListOf()
@@ -47,5 +50,34 @@ class CoinRecyclerviewAdapter(private val clickListener: ItemClickListener) : Re
         return this.filterList.size
     }
 
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    filterList = originalList
+                } else {
+                    val resultList = ArrayList<CoinList>()
+                    for (row in originalList) {
+                        if (row.name!!.toLowerCase().contains(charSearch.toLowerCase())) {
+                            resultList.add(row)
+                        }
+                    }
+                    filterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = filterList
+                return filterResults
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filterList = results?.values as ArrayList<CoinList>
+                notifyDataSetChanged()
+            }
+
+        }
+    }
 
 }

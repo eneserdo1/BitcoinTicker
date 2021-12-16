@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.bitcointicker.R
@@ -14,10 +15,14 @@ import com.app.bitcointicker.data.entities.CoinList
 import com.app.bitcointicker.databinding.FragmentCoinListBinding
 import com.app.bitcointicker.ui.coinList.adapter.CoinRecyclerviewAdapter
 import com.app.bitcointicker.ui.coinList.adapter.ItemClickListener
+import com.app.bitcointicker.util.KotlinEx.textChanges
 import com.app.bitcointicker.util.goneAlpha
 import com.app.bitcointicker.util.visibleAlpha
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class CoinListFragment : BaseFragment<FragmentCoinListBinding>(FragmentCoinListBinding::inflate) {
@@ -30,7 +35,15 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding>(FragmentCoinListB
 
         initRecyclerview()
         initObservers()
+        initSearchviewListener()
         getCoinList()
+
+    }
+
+    private fun initSearchviewListener() {
+        binding.coinSearchview.textChanges().debounce(500).onEach { s->
+            coinAdapter.filter.filter(s.toString())
+        }.launchIn(lifecycleScope)
     }
 
     private fun initObservers() {

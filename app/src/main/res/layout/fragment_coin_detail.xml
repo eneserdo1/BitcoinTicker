@@ -23,6 +23,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+
         <TextView
             android:id="@+id/coin_name_tv"
             android:layout_width="wrap_content"
@@ -32,7 +34,6 @@
             android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textSize="20sp"
-
             app:layout_constraintBottom_toBottomOf="@+id/coin_imageview"
             app:layout_constraintStart_toEndOf="@id/coin_imageview"
             app:layout_constraintTop_toTopOf="@+id/coin_imageview"
@@ -60,7 +61,7 @@
             android:fontFamily="@font/sf_pro_text_regular"
             android:textAlignment="textStart"
             android:textColor="@color/textGrey"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@id/coin_description"
             app:layout_constraintTop_toBottomOf="@id/coin_imageview"
             android:layout_marginTop="40dp"
@@ -87,7 +88,7 @@
             android:fontFamily="@font/sf_pro_text_regular"
             android:textAlignment="textStart"
             android:textColor="@color/textGrey"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@id/coin_hash_algorithm"
             app:layout_constraintTop_toBottomOf="@id/coin_description_tv"
             android:layout_marginTop="30dp"
@@ -114,7 +115,7 @@
             android:fontFamily="@font/sf_pro_text_regular"
             android:textAlignment="textStart"
             android:textColor="@color/textGrey"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@id/coin_current_price"
             app:layout_constraintTop_toBottomOf="@id/coin_hash_algorithm_tv"
             android:layout_marginTop="30dp"
@@ -142,7 +143,7 @@
             android:fontFamily="@font/sf_pro_text_regular"
             android:textAlignment="textStart"
             android:textColor="@color/textGrey"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@id/coin_change_percentage"
             app:layout_constraintTop_toBottomOf="@id/coin_current_price_tv"
             android:layout_marginTop="30dp"
@@ -157,5 +158,40 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center_vertical"
+            >
+            <EditText
+                android:id="@+id/coin_timer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.75"
+                android:background="@drawable/serachview_background"
+                android:hint="Yenileme Zamanı giriniz"
+                android:layout_marginHorizontal="5dp"
+                android:paddingHorizontal="5dp"
+                android:inputType="number"
+                />
+
+            <Button
+                android:id="@+id/add_fav_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"
+                android:layout_marginHorizontal="5dp"
+                android:text="Favoriye Ekle"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                />
+
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

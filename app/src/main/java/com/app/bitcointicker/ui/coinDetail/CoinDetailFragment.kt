@@ -6,7 +6,9 @@ import androidx.fragment.app.viewModels
 import coil.load
 import com.app.bitcointicker.common.BaseFragment
 import com.app.bitcointicker.data.entities.CoinDetail
+import com.app.bitcointicker.data.entities.FavouriteCoin
 import com.app.bitcointicker.databinding.FragmentCoinDetailBinding
+import com.app.bitcointicker.util.clickListener
 import com.app.bitcointicker.util.goneAlpha
 import com.app.bitcointicker.util.visibleAlpha
 import com.google.android.material.snackbar.Snackbar
@@ -19,18 +21,35 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
 
     private val viewModel: CoinDetailViewModel by viewModels()
     private var id:String?=null
+    private var currentCoin : CoinDetail?=null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initObservers()
         id = arguments?.getString("id")
+        initObservers()
         getCoinDetail()
+        buttonsListener()
     }
+
+    private fun buttonsListener() {
+        binding.addFavButton.clickListener {
+            currentCoin?.let {coin->
+                val interval = binding.coinTimer.text.toString().toLong()
+                interval.let {time->
+                    viewModel.addFirestore(FavouriteCoin(time,coin))
+                }
+            }
+        }
+    }
+
     private fun initObservers() {
         viewModel.coinDetailResponse.observe(viewLifecycleOwner,{response->
             if (response != null){
                 setValues(response)
+                currentCoin = response
             }else{
+                currentCoin = null
                 Snackbar.make(requireView(),"Bir hata oluştu, tekrar deneyiniz", Snackbar.LENGTH_LONG)
                     .setAction("Tekrar yükle") {
                         getCoinDetail()
@@ -45,6 +64,13 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
                 binding.progressbar.goneAlpha()
             }
         })
+
+        viewModel.addFirestoreState.observe(viewLifecycleOwner,{response->
+            if (response){
+               binding.coinTimer.text.clear()
+            }
+        })
+
     }
 
     private fun setValues(data:CoinDetail) {
