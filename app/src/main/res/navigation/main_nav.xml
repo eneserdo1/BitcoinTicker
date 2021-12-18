@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/coinListFragment"
+    android:id="@+id/main_nav">
 
     <fragment
         android:id="@+id/coinListFragment"
@@ -40,18 +40,9 @@
         android:id="@+id/favouritesCoinFragment"
         android:name="com.app.bitcointicker.ui.coinFav.FavouritesCoinFragment"
         android:label="fragment_favourites_coin"
-        tools:layout="@layout/fragment_favourites_coin" />
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.app.bitcointicker.ui.splash.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_favourites_coin" >
         <action
-            android:id="@+id/action_splashFragment_to_coinListFragment"
-            app:destination="@id/coinListFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"/>
+            android:id="@+id/action_favouritesCoinFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
     </fragment>
 </navigation>

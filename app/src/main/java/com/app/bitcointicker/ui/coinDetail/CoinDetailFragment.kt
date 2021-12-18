@@ -2,8 +2,11 @@ package com.app.bitcointicker.ui.coinDetail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import coil.load
+import com.app.bitcointicker.R
 import com.app.bitcointicker.common.BaseFragment
 import com.app.bitcointicker.data.entities.CoinDetail
 import com.app.bitcointicker.data.entities.FavouriteCoin
@@ -30,15 +33,37 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
         initObservers()
         getCoinDetail()
         buttonsListener()
+        isCoinFavourite()
+    }
+
+    private fun isCoinFavourite() {
+        viewModel.getLocalData(id!!,requireContext()).observe(viewLifecycleOwner, {favButtonState->
+            if (favButtonState == id || !favButtonState.isNullOrEmpty()){
+                binding.addFavouriteLayout.goneAlpha()
+                binding.deleteFavButton.visibleAlpha()
+            }else{
+                binding.deleteFavButton.goneAlpha()
+                binding.addFavouriteLayout.visibleAlpha()
+            }
+        })
     }
 
     private fun buttonsListener() {
         binding.addFavButton.clickListener {
             currentCoin?.let {coin->
-                val interval = binding.coinTimer.text.toString().toLong()
-                interval.let {time->
-                    viewModel.addFirestore(FavouriteCoin(time,coin))
+                val interval = binding.coinTimer.text.toString()
+                if (!interval.isNullOrEmpty()){
+                    val intervalLong = Integer.valueOf(binding.coinTimer.text.toString())*1000L
+                    viewModel.addFirestore(FavouriteCoin(intervalLong,coin),requireContext())
+                }else{
+                    Toast.makeText(requireContext(), getString(R.string.lutfen_yenileme_zamani_giriniz), Toast.LENGTH_LONG).show()
                 }
+            }
+        }
+
+        binding.deleteFavButton.clickListener {
+            currentCoin?.let {coin->
+                viewModel.deleteFirestore(coin.id.toString(),requireContext())
             }
         }
     }
@@ -50,8 +75,8 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
                 currentCoin = response
             }else{
                 currentCoin = null
-                Snackbar.make(requireView(),"Bir hata oluştu, tekrar deneyiniz", Snackbar.LENGTH_LONG)
-                    .setAction("Tekrar yükle") {
+                Snackbar.make(requireView(),getString(R.string.bir_hata_olustu), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.tekrar_yukle)) {
                         getCoinDetail()
                     }.show()
             }
@@ -67,7 +92,14 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
 
         viewModel.addFirestoreState.observe(viewLifecycleOwner,{response->
             if (response){
-               binding.coinTimer.text.clear()
+                Toast.makeText(requireContext(), getString(R.string.favorilere_eklendi), Toast.LENGTH_LONG).show()
+                binding.coinTimer.text.clear()
+            }
+        })
+
+        viewModel.deleteFirestoreState.observe(viewLifecycleOwner,{response->
+            if (response){
+               Navigation.findNavController(requireView()).popBackStack()
             }
         })
 

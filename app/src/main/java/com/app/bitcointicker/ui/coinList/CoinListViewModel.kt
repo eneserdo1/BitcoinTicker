@@ -16,7 +16,7 @@ import javax.inject.Inject
 class CoinListViewModel @Inject constructor(private val repository: Repository):ViewModel() {
 
     private val _coinListResponse = MutableLiveData<List<CoinList>>()
-    val coinListResponse = _coinListResponse
+    val coinListResponse get() = _coinListResponse
     val loading = MutableLiveData<Boolean>()
 
     fun getCoinList(){

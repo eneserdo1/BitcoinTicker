@@ -16,6 +16,7 @@ import com.app.bitcointicker.databinding.FragmentCoinListBinding
 import com.app.bitcointicker.ui.coinList.adapter.CoinRecyclerviewAdapter
 import com.app.bitcointicker.ui.coinList.adapter.ItemClickListener
 import com.app.bitcointicker.util.KotlinEx.textChanges
+import com.app.bitcointicker.util.clickListener
 import com.app.bitcointicker.util.goneAlpha
 import com.app.bitcointicker.util.visibleAlpha
 import com.google.android.material.snackbar.Snackbar
@@ -37,7 +38,14 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding>(FragmentCoinListB
         initObservers()
         initSearchviewListener()
         getCoinList()
+        buttonsListener()
 
+    }
+
+    private fun buttonsListener() {
+        binding.favButton.clickListener {
+            Navigation.findNavController(it).navigate(R.id.action_coinListFragment_to_favouritesCoinFragment)
+        }
     }
 
     private fun initSearchviewListener() {
@@ -51,8 +59,8 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding>(FragmentCoinListB
             if (!response.isNullOrEmpty()){
                 coinAdapter.setList(response)
             }else{
-                Snackbar.make(requireView(),"Bir hata oluştu, tekrar deneyiniz",Snackbar.LENGTH_LONG)
-                    .setAction("Tekrar yükle") {
+                Snackbar.make(requireView(),getString(R.string.bir_hata_olustu),Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.tekrar_yukle)) {
                     getCoinList()
                 }.show()
             }

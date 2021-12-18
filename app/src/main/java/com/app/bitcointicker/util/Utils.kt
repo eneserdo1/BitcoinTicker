@@ -1,6 +1,7 @@
 package com.app.bitcointicker.util
 
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.SystemClock
@@ -88,7 +89,5 @@ fun View.invisibleAlpha(){
 fun getPref(context: Context): PreferencesHelper {
     return PreferencesHelper.getInstance(context)
 }
-
-
 
 
