@@ -6,4 +6,5 @@
     <string name="tekrar_yukle">Tekrar yükle</string>
     <string name="lutfen_yenileme_zamani_giriniz">Lütfen yenileme zamanı giriniz</string>
     <string name="favorilere_eklendi">Favorilere Eklendi</string>
+    <string name="kayitli_kullanici_bulunamadi">Kayıtlı kullanıcı bulunamadı</string>
 </resources>

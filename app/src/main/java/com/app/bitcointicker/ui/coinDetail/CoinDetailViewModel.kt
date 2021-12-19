@@ -19,17 +19,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CoinDetailViewModel @Inject constructor(val repository: Repository,val localDataManager: LocalDataManager):ViewModel() {
+class CoinDetailViewModel @Inject constructor(
+    val repository: Repository,
+    val localDataManager: LocalDataManager,
+    val db : FirebaseFirestore,
+    val auth: FirebaseAuth):ViewModel() {
 
     private val _coinDetailResponse = MutableLiveData<CoinDetail>()
     val coinDetailResponse get() = _coinDetailResponse
     var addFirestoreState: MutableLiveData<Boolean> = MutableLiveData()
     var deleteFirestoreState: MutableLiveData<Boolean> = MutableLiveData()
     var isCoinFav: MutableLiveData<String> = MutableLiveData()
-    val db = FirebaseFirestore.getInstance()
-    val auth = FirebaseAuth.getInstance()
     val loading = MutableLiveData<Boolean>()
-
 
 
     fun getCoinDetail(id:String){

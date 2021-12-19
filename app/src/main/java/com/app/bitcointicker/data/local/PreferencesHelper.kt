@@ -13,7 +13,7 @@ class PreferencesHelper private constructor(context: Context) {
 
         private var instance: PreferencesHelper? = null
 
-        const val PROP_DEVICE_ID: String = "prop.device.id"
+        const val PROP_IS_LOGIN: String = "prop.is.login"
         const val PROP_USER_ID: String = "prop.user.id"
         const val PROP_REFRESH_TIME: String = "prop.refresh.time"
 
@@ -30,10 +30,10 @@ class PreferencesHelper private constructor(context: Context) {
             mEditor.putString(PROP_USER_ID, value)
             mEditor.commit()
         }
-    var favCoinId: String
-        get() = mPreferences.getString(PROP_DEVICE_ID, "")!!
+    var isLogin: Boolean
+        get() = mPreferences.getBoolean(PROP_IS_LOGIN, false)
         set(value) {
-            mEditor.putString(PROP_DEVICE_ID, value)
+            mEditor.putBoolean(PROP_IS_LOGIN, value)
             mEditor.commit()
         }
     var refreshTime: String

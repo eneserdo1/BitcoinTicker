@@ -15,6 +15,7 @@ import com.app.bitcointicker.data.entities.CoinList
 import com.app.bitcointicker.databinding.FragmentCoinListBinding
 import com.app.bitcointicker.ui.coinList.adapter.CoinRecyclerviewAdapter
 import com.app.bitcointicker.ui.coinList.adapter.ItemClickListener
+import com.app.bitcointicker.util.Constants.Companion.COIN_DETAIL_ID
 import com.app.bitcointicker.util.KotlinEx.textChanges
 import com.app.bitcointicker.util.clickListener
 import com.app.bitcointicker.util.goneAlpha
@@ -85,7 +86,7 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding>(FragmentCoinListB
         coinAdapter = CoinRecyclerviewAdapter(object : ItemClickListener{
             override fun selectedItem(data: CoinList) {
                 val bundle = Bundle()
-                bundle.putString("id",data.id)
+                bundle.putString(COIN_DETAIL_ID,data.id)
                 Navigation.findNavController(requireView()).navigate(R.id.action_coinListFragment_to_coinDetailFragment,bundle)
             }
         })

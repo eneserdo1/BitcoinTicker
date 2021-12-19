@@ -11,6 +11,7 @@ import com.app.bitcointicker.data.entities.CoinDetail
 import com.app.bitcointicker.databinding.FragmentFavouritesCoinBinding
 import com.app.bitcointicker.ui.coinFav.adapter.FavItemClickListener
 import com.app.bitcointicker.ui.coinFav.adapter.FavouriteCoinRecyclerviewAdapter
+import com.app.bitcointicker.util.Constants.Companion.COIN_DETAIL_ID
 import com.app.bitcointicker.util.goneAlpha
 import com.app.bitcointicker.util.visibleAlpha
 import com.google.android.material.snackbar.Snackbar
@@ -33,8 +34,9 @@ class FavouritesCoinFragment : BaseFragment<FragmentFavouritesCoinBinding>(Fragm
     private fun initRecyclerview() {
         favAdapter = FavouriteCoinRecyclerviewAdapter(object :FavItemClickListener{
             override fun selectedItem(data: CoinDetail) {
+                println("Selected Favourite Coin - $data")
                 val bundle = Bundle()
-                bundle.putString("id",data.id)
+                bundle.putString(COIN_DETAIL_ID,data.id)
                 Navigation.findNavController(requireView()).navigate(R.id.action_favouritesCoinFragment_to_coinDetailFragment,bundle)
             }
         })
@@ -48,6 +50,7 @@ class FavouritesCoinFragment : BaseFragment<FragmentFavouritesCoinBinding>(Fragm
         viewModel.favouriteCoinList.observe(viewLifecycleOwner,{response->
             if (!response.isNullOrEmpty()){
                 favAdapter.setList(response)
+                viewModel.getFavorieListener()
             }else{
                 binding.noFavLayout.visibleAlpha()
             }

@@ -11,6 +11,7 @@ import com.app.bitcointicker.common.BaseFragment
 import com.app.bitcointicker.data.entities.CoinDetail
 import com.app.bitcointicker.data.entities.FavouriteCoin
 import com.app.bitcointicker.databinding.FragmentCoinDetailBinding
+import com.app.bitcointicker.util.Constants.Companion.COIN_DETAIL_ID
 import com.app.bitcointicker.util.clickListener
 import com.app.bitcointicker.util.goneAlpha
 import com.app.bitcointicker.util.visibleAlpha
@@ -29,7 +30,7 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        id = arguments?.getString("id")
+        id = arguments?.getString(COIN_DETAIL_ID)
         initObservers()
         getCoinDetail()
         buttonsListener()

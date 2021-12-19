@@ -10,7 +10,7 @@ import com.app.bitcointicker.data.entities.CoinList
 import com.app.bitcointicker.databinding.RecyclerItemCoinBinding
 import com.app.bitcointicker.util.clickListener
 
-class CoinRecyclerviewAdapter(private val clickListener: ItemClickListener) : RecyclerView.Adapter<CoinRecyclerviewAdapter.MyHolder>(),Filterable {
+class CoinRecyclerviewAdapter(private val itemClickListener: ItemClickListener) : RecyclerView.Adapter<CoinRecyclerviewAdapter.MyHolder>(),Filterable {
 
     var originalList: MutableList<CoinList> = arrayListOf()
     var filterList: MutableList<CoinList> = arrayListOf()
@@ -28,7 +28,7 @@ class CoinRecyclerviewAdapter(private val clickListener: ItemClickListener) : Re
             binding.coinSymbolTv.text = data.symbol
             binding.coinNameTv.text = data.name
             itemView.clickListener {
-                clickListener.selectedItem(data)
+                itemClickListener.selectedItem(data)
             }
         }
     }
