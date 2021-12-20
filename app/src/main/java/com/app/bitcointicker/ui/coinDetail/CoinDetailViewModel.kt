@@ -28,7 +28,6 @@ class CoinDetailViewModel @Inject constructor(
     private val _coinDetailResponse = MutableLiveData<CoinDetail>()
     val coinDetailResponse get() = _coinDetailResponse
     var addFirestoreState: MutableLiveData<Boolean> = MutableLiveData()
-    var deleteFirestoreState: MutableLiveData<Boolean> = MutableLiveData()
     var isCoinFav: MutableLiveData<String> = MutableLiveData()
     val loading = MutableLiveData<Boolean>()
 
@@ -68,28 +67,12 @@ class CoinDetailViewModel @Inject constructor(
     }
 
 
-    fun deleteFirestore(id: String,context: Context) {
-        loading.postValue(true)
-        db.collection(auth.uid.toString()).document(id).delete()
-            .addOnSuccessListener {
-                deleteFirestoreState.postValue(true)
-                removeLocalData(id,context)
-                loading.postValue(false)
-            }.addOnFailureListener {
-                deleteFirestoreState.postValue(true)
-                loading.postValue(false)
-            }
-    }
 
     fun setLocalData(id: String, context: Context) {
         // Favoriye eklenen coinin id'sini sharedprefence'e ekliyoruz
         localDataManager.setSharedPreferences(context, id, id)
     }
 
-    fun removeLocalData(id: String, context: Context) {
-        // Favoriden kaldırılan coinin id'sini sharedprefence'dan siliyoruz
-        localDataManager.removeSharedprefence(context, id)
-    }
 
     fun getLocalData(id: String, context: Context): LiveData<String> {
         // Sharedpreference'den tıklanılan coinin favori durumunu çekiyoruz

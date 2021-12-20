@@ -31,7 +31,7 @@
                 android:id="@+id/mail_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-mail" />
+                android:hint="@string/e_mail" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Password" />
+                android:hint="@string/password" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -65,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:text="Login"
+            android:text="@string/login"
             android:textColor="@color/white"
             android:layout_marginHorizontal="5dp"
             android:background="@drawable/item_background"
@@ -75,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:text="Register"
+            android:text="@string/register"
             android:layout_marginHorizontal="5dp"
             android:textColor="@color/white"
             android:background="@drawable/item_background"

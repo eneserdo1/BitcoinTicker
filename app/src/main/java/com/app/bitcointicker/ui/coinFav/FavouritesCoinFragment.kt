@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.bitcointicker.R
 import com.app.bitcointicker.common.BaseFragment
 import com.app.bitcointicker.data.entities.CoinDetail
+import com.app.bitcointicker.data.entities.FavouriteCoin
 import com.app.bitcointicker.databinding.FragmentFavouritesCoinBinding
 import com.app.bitcointicker.ui.coinFav.adapter.FavItemClickListener
 import com.app.bitcointicker.ui.coinFav.adapter.FavouriteCoinRecyclerviewAdapter
@@ -22,6 +23,7 @@ class FavouritesCoinFragment : BaseFragment<FragmentFavouritesCoinBinding>(Fragm
 
     private val viewModel : FavouritesCoinViewModel by viewModels()
     private lateinit var favAdapter:FavouriteCoinRecyclerviewAdapter
+    private var initList = ArrayList<FavouriteCoin>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +36,6 @@ class FavouritesCoinFragment : BaseFragment<FragmentFavouritesCoinBinding>(Fragm
     private fun initRecyclerview() {
         favAdapter = FavouriteCoinRecyclerviewAdapter(object :FavItemClickListener{
             override fun selectedItem(data: CoinDetail) {
-                println("Selected Favourite Coin - $data")
                 val bundle = Bundle()
                 bundle.putString(COIN_DETAIL_ID,data.id)
                 Navigation.findNavController(requireView()).navigate(R.id.action_favouritesCoinFragment_to_coinDetailFragment,bundle)
@@ -49,8 +50,12 @@ class FavouritesCoinFragment : BaseFragment<FragmentFavouritesCoinBinding>(Fragm
     private fun initObserver() {
         viewModel.favouriteCoinList.observe(viewLifecycleOwner,{response->
             if (!response.isNullOrEmpty()){
-                favAdapter.setList(response)
-                viewModel.getFavorieListener()
+                initList.clear()
+                favAdapter.notifyDataSetChanged()
+                initList.addAll(response)
+                favAdapter.submitList(initList)
+                favAdapter.notifyDataSetChanged()
+
             }else{
                 binding.noFavLayout.visibleAlpha()
             }

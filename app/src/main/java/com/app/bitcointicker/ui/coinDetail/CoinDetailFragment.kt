@@ -41,9 +41,7 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
         viewModel.getLocalData(id!!,requireContext()).observe(viewLifecycleOwner, {favButtonState->
             if (favButtonState == id || !favButtonState.isNullOrEmpty()){
                 binding.addFavouriteLayout.goneAlpha()
-                binding.deleteFavButton.visibleAlpha()
             }else{
-                binding.deleteFavButton.goneAlpha()
                 binding.addFavouriteLayout.visibleAlpha()
             }
         })
@@ -62,11 +60,6 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
             }
         }
 
-        binding.deleteFavButton.clickListener {
-            currentCoin?.let {coin->
-                viewModel.deleteFirestore(coin.id.toString(),requireContext())
-            }
-        }
     }
 
     private fun initObservers() {
@@ -95,15 +88,10 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding>(FragmentCoinD
             if (response){
                 Toast.makeText(requireContext(), getString(R.string.favorilere_eklendi), Toast.LENGTH_LONG).show()
                 binding.coinTimer.text.clear()
+            }else{
+                Toast.makeText(requireContext(), getString(R.string.bir_hata_olustu), Toast.LENGTH_LONG).show()
             }
         })
-
-        viewModel.deleteFirestoreState.observe(viewLifecycleOwner,{response->
-            if (response){
-               Navigation.findNavController(requireView()).popBackStack()
-            }
-        })
-
     }
 
     private fun setValues(data:CoinDetail) {

@@ -7,4 +7,17 @@
     <string name="lutfen_yenileme_zamani_giriniz">Lütfen yenileme zamanı giriniz</string>
     <string name="favorilere_eklendi">Favorilere Eklendi</string>
     <string name="kayitli_kullanici_bulunamadi">Kayıtlı kullanıcı bulunamadı</string>
+    <string name="yenileme_zaman_giriniz">Yenileme Zamanı giriniz</string>
+    <string name="favoriye_ekle">Favoriye Ekle</string>
+    <string name="change_percentage">Change Percentage:</string>
+    <string name="current_price">Current Price:</string>
+    <string name="hash_algorithm">Hash Algorithm:</string>
+    <string name="description">Description:</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="ara">Ara</string>
+    <string name="favourites">Favourites</string>
+    <string name="hen_z_favorilere_eklenmi_kripto_paran_z_bulunmuyor">Henüz favorilere eklenmiş kripto paranız bulunmuyor</string>
 </resources>

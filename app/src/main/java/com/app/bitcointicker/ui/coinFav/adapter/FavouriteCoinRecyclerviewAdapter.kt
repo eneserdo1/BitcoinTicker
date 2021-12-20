@@ -2,50 +2,48 @@ package com.app.bitcointicker.ui.coinFav.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bitcointicker.data.entities.FavouriteCoin
 import com.app.bitcointicker.databinding.RecyclerItemFavCoinBinding
 import com.app.bitcointicker.util.clickListener
 
-class FavouriteCoinRecyclerviewAdapter(private val itemClickListener: FavItemClickListener) : RecyclerView.Adapter<FavouriteCoinRecyclerviewAdapter.MyHolder>() {
+class FavouriteCoinRecyclerviewAdapter(private val itemClickListener: FavItemClickListener) :
+    ListAdapter<FavouriteCoin, FavouriteCoinRecyclerviewAdapter.MyViewHolder>(FavouriteDiffCallback) {
 
-    var originalList: MutableList<FavouriteCoin> = arrayListOf()
-    lateinit var binding: RecyclerItemFavCoinBinding
+    private lateinit var binding: RecyclerItemFavCoinBinding
 
-
-    fun setList(newList: List<FavouriteCoin>) {
-        this.originalList = newList as MutableList<FavouriteCoin>
-        notifyDataSetChanged()
-    }
-
-    inner class MyHolder(private val binding: RecyclerItemFavCoinBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding: RecyclerItemFavCoinBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(data: FavouriteCoin) = with(binding) {
             binding.coinSymbolTv.text = data.coinDetail!!.symbol
             binding.coinNameTv.text = data.coinDetail!!.name
-            binding.coinPriceTv.text = "$${data.coinDetail.market_data.current_price.usd.toString()}"
-            binding.favouriteItemLayout.clickListener {
+            binding.coinPriceTv.text =
+                "$${data.coinDetail.market_data.current_price.usd.toString()}"
+            itemView.clickListener {
                 itemClickListener.selectedItem(data.coinDetail)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        binding = RecyclerItemFavCoinBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return MyHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        binding =
+            RecyclerItemFavCoinBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.bind(this.originalList[position])
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return this.originalList.size
+    object FavouriteDiffCallback : DiffUtil.ItemCallback<FavouriteCoin>() {
+        override fun areItemsTheSame(oldItem: FavouriteCoin, newItem: FavouriteCoin): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: FavouriteCoin, newItem: FavouriteCoin): Boolean {
+            return oldItem.coinDetail!!.id.toString() == newItem.coinDetail!!.id.toString()
+        }
     }
-
-
-
 }

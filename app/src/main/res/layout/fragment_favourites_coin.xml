@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Favourites"
+            android:text="@string/favourites"
             android:textSize="20sp"
             android:fontFamily="@font/sf_pro_text_bold"
             android:textColor="@color/white"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/black"
-            android:text="Henüz favorilere eklenmiş kripto paranız bulunmuyor"
+            android:text="@string/hen_z_favorilere_eklenmi_kripto_paran_z_bulunmuyor"
             android:fontFamily="@font/sf_pro_text_semibold"
             android:textAlignment="center"
             />
